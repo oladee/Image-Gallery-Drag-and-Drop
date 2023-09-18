@@ -22,8 +22,8 @@ const Login = () => {
     },
   });
   return (
-    <div>
-      <form>
+    <div className="flex h-screen justify-center items-center">
+      <form className="flex h-screen justify-center items-center">
         <div>
           <label htmlFor="email">Email Address</label>
           <div>
@@ -57,7 +57,7 @@ const Login = () => {
             ) : null}
           </div>
         </div>
-        
+
       </form>
     </div>
   );
