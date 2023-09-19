@@ -4,8 +4,13 @@ import * as Yup from "yup";
 import userIcon from '../assets/user.svg'
 import lockicon from '../assets/lock.svg'
 import background from '../assets/BG.svg'
+import {useNavigate} from 'react-router-dom'
+import { app } from '../firebase-config'
+import { getAuth, signInWithEmailAndPassword} from 'firebase/auth'
 
 const Login = () => {
+    let navigate = useNavigate();
+    const authentication = getAuth();
   const formik = useFormik({
     initialValues: {
       password: "",
@@ -13,20 +18,25 @@ const Login = () => {
     },
     validationSchema: Yup.object({
       password: Yup.string()
-        .required("Please Enter your password")
-        .matches(
-          /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-          "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
-        ),
+        .required("Please Enter your password"),
       email: Yup.string().email("Invalid email address").required("Required"),
     }),
     onSubmit: (values) => {
+        signInWithEmailAndPassword(authentication, values.email, values.password)
+        .then((response) => {
+          navigate('/home')
+          sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
+        })
       alert(JSON.stringify(values, null, 2));
     },
   });
   return (
     <div className="flex h-screen justify-center items-center bg-no-repeat bg-cover bg-blue-800" style={{backgroundImage: 'url(' + background + ')' }}>
-      <form>
+      <form className="w-[82%] md:max-w-[350px]" onSubmit={(e)=>{
+        e.preventDefault()
+        formik.handleSubmit()
+        alert('yay')
+      }}>
         <div className="flex items-center border-2 border-white rounded-lg gap-2 mb-1 px-3 py-3">
           <img src={userIcon} alt="user icon" />
           <div>
@@ -65,6 +75,7 @@ const Login = () => {
               <div>{formik.errors.password}</div>
             ) : null}
 
+            <button className="bg-white mt-6 py-2 w-full">LOGIN</button>
       </form>
     </div>
   );
