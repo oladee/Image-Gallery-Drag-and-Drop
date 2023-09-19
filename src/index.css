@@ -7,3 +7,21 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.card-profile {
+  width: 68%;
+  font-size: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 10px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.card--img {
+  width: 300px;
+  height: 290px;
+  object-fit: cover;
+  border-radius: 9px;
+  margin-bottom: 9px;
+}

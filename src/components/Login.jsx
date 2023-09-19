@@ -7,6 +7,8 @@ import background from '../assets/BG.svg'
 import {useNavigate} from 'react-router-dom'
 import { app } from '../firebase-config'
 import { getAuth, signInWithEmailAndPassword} from 'firebase/auth'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     let navigate = useNavigate();
@@ -22,20 +24,30 @@ const Login = () => {
       email: Yup.string().email("Invalid email address").required("Required"),
     }),
     onSubmit: (values) => {
-        signInWithEmailAndPassword(authentication, values.email, values.password)
-        .then((response) => {
-          navigate('/home')
-          sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
-        })
-      alert(JSON.stringify(values, null, 2));
+        const letter = async ()=>{
+            let response = await signInWithEmailAndPassword(authentication, values.email, values.password)
+            .then((response) => {
+              navigate('/home')
+              sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
+            })
+            .catch((error) => {
+                if(error.code === 'auth/invalid-login-credentials')
+                toast.error('Invalid credentials')
+       })
+        }
+        letter()
+            
+            
+
+
     },
   });
+  
   return (
     <div className="flex h-screen justify-center items-center bg-no-repeat bg-cover bg-blue-800" style={{backgroundImage: 'url(' + background + ')' }}>
       <form className="w-[82%] md:max-w-[350px]" onSubmit={(e)=>{
         e.preventDefault()
         formik.handleSubmit()
-        alert('yay')
       }}>
         <div className="flex items-center border-2 border-white rounded-lg gap-2 mb-1 px-3 py-3">
           <img src={userIcon} alt="user icon" />
@@ -48,12 +60,12 @@ const Login = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
-              className="bg-transparent outline-none text-xl md:text-2xl"
+              className="bg-blue-800 outline-none text-xl md:text-2xl text-white"
               />
           </div>
         </div>
         {formik.touched.email && formik.errors.email ? (
-              <div>{formik.errors.email}</div>
+              <div className="text-red-500 font-medium italic">{formik.errors.email}</div>
             ) : null}
 
         <div className="flex items-center gap-2 border-2 border-white rounded-lg px-3 py-3 mt-4 mb-1">
@@ -67,17 +79,19 @@ const Login = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.password}
-              className="bg-transparent outline-none text-xl md:text-2xl"
+              className="bg-blue-800 outline-none text-xl md:text-2xl text-white"
             />
           </div>
         </div>
         {formik.touched.password && formik.errors.password ? (
-              <div>{formik.errors.password}</div>
+              <div className="text-red-500 font-medium italic">{formik.errors.password}</div>
             ) : null}
 
-            <button className="bg-white mt-6 py-2 w-full">LOGIN</button>
+            <button className="bg-white mt-6 py-2 w-full text-blue-800">LOGIN</button>
       </form>
+      <ToastContainer />
     </div>
+
   );
 };
 
