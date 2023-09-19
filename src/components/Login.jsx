@@ -1,6 +1,9 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import userIcon from '../assets/user.svg'
+import lockicon from '../assets/lock.svg'
+import background from '../assets/BG.svg'
 
 const Login = () => {
   const formik = useFormik({
@@ -22,41 +25,45 @@ const Login = () => {
     },
   });
   return (
-    <div className="flex h-screen justify-center items-center">
-      <form className="flex h-screen justify-center items-center">
-        <div>
-          <label htmlFor="email">Email Address</label>
+    <div className="flex h-screen justify-center items-center bg-no-repeat bg-cover bg-blue-800" style={{backgroundImage: 'url(' + background + ')' }}>
+      <form>
+        <div className="flex items-center border-2 border-white rounded-lg gap-2 mb-1 px-3 py-3">
+          <img src={userIcon} alt="user icon" />
           <div>
             <input
               id="email"
               name="email"
               type="email"
+              placeholder="user@example.com"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
-            />
-            {formik.touched.email && formik.errors.email ? (
-              <div>{formik.errors.email}</div>
-            ) : null}
+              className="bg-transparent outline-none text-xl md:text-2xl"
+              />
           </div>
         </div>
+        {formik.touched.email && formik.errors.email ? (
+              <div>{formik.errors.email}</div>
+            ) : null}
 
-        <div>
-          <label htmlFor="password">Password</label>
+        <div className="flex items-center gap-2 border-2 border-white rounded-lg px-3 py-3 mt-4 mb-1">
+          <img src={lockicon} alt="lock icon" />
           <div>
             <input
               id="password"
               name="password"
               type="password"
+              placeholder="password"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.password}
+              className="bg-transparent outline-none text-xl md:text-2xl"
             />
-            {formik.touched.password && formik.errors.password ? (
-              <div>{formik.errors.password}</div>
-            ) : null}
           </div>
         </div>
+        {formik.touched.password && formik.errors.password ? (
+              <div>{formik.errors.password}</div>
+            ) : null}
 
       </form>
     </div>
