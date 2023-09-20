@@ -27,7 +27,7 @@ const Login = () => {
         const letter = async ()=>{
             let response = await signInWithEmailAndPassword(authentication, values.email, values.password)
             .then((response) => {
-              navigate('/home')
+              navigate('/')
               sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
             })
             .catch((error) => {

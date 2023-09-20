@@ -12,7 +12,7 @@ const Homepage = ({moveImage, imageData}) => {
         let authToken = sessionStorage.getItem('Auth Token')
 
         if (authToken) {
-            navigate('/home')
+            navigate('/')
         }
 
         if (!authToken) {
@@ -21,7 +21,6 @@ const Homepage = ({moveImage, imageData}) => {
         
 
     },[])
-    console.log(imageData)
 
     const imageDetailing = imageData.map((x, index) => <Imagecards key={x.url} index={index} id={x.id} src={x.src?.small} alt={x.alt} moveImage={moveImage} />)
 
