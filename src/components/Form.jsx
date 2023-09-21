@@ -90,7 +90,7 @@ const Form = ({title}) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.password}
-              className="bg-blue-800 outline-none text-xl md:text-2xl text-white"
+              className="bg-blue-800 outline-none text-lg md:text-2xl text-white w-[80%]"
               autoComplete="off"
             />
           </div>
