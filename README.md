@@ -1,8 +1,44 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# HNGX STAGE 3 - Image Gallery Drag and Drop
 
-Currently, two official plugins are available:
+This is a solution to the HNGX STAGE 3 TASK
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of contents
+
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+
+## Overview
+
+A fully functional and responsive image gallery that showcases a collection of images in a visually appealing way.
+A user should be able to Login to the gallery page. Authenticated users should be able to use the Drag-and-Drop feature, they should be able to select and drag images, effortlessly rearranging them within the gallery.
+
+### The challenge
+
+Users should be able to:
+
+- Login to the gallery page.
+- Receive error messages when the form is submitted if:
+  - Any input field is empty
+  - Authenticated users should be able to use the Drag-and-Drop feature,
+- they should be able to select and drag images,
+
+
+### Links
+
+- Solution URL: [Github repo link](https://github.com/oladee/Image-Gallery-Drag-and-Drop)
+- Live Site URL: [Card Detailing](https://image-dnd.netlify.app)
+
+
+### Built with
+
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox, Grid
+- Tailwind Css
+- React
+

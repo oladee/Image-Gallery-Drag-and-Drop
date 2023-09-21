@@ -4,13 +4,13 @@ import * as Yup from "yup";
 import userIcon from '../assets/user.svg'
 import lockicon from '../assets/lock.svg'
 import background from '../assets/BG.svg'
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { app } from '../firebase-config'
-import { getAuth, signInWithEmailAndPassword} from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'firebase/auth'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Login = () => {
+const Form = ({title}) => {
     let navigate = useNavigate();
     const authentication = getAuth();
   const formik = useFormik({
@@ -24,8 +24,9 @@ const Login = () => {
       email: Yup.string().email("Invalid email address").required("Required"),
     }),
     onSubmit: (values) => {
-        const letter = async ()=>{
-            let response = await signInWithEmailAndPassword(authentication, values.email, values.password)
+        const letter = async (title)=>{
+            if(title === 'LOGIN'){
+              let response = await signInWithEmailAndPassword(authentication, values.email, values.password)
             .then((response) => {
               navigate('/')
               sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
@@ -34,8 +35,17 @@ const Login = () => {
                 if(error.code === 'auth/invalid-login-credentials')
                 toast.error('Invalid credentials')
        })
+            }
+            else if(title === 'REGISTER' )
+            {
+              let response = await createUserWithEmailAndPassword(authentication, values.email, values.password)
+            .then((response) => {
+              navigate('/')
+              sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
+            })
+            }
         }
-        letter()
+        letter(title)
             
             
 
@@ -60,7 +70,8 @@ const Login = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
-              className="bg-blue-800 outline-none text-xl md:text-2xl text-white"
+              className="bg-blue-800 outline-none text-lg md:text-2xl text-white w-[80%]"
+              autoComplete="off"
               />
           </div>
         </div>
@@ -80,6 +91,7 @@ const Login = () => {
               onBlur={formik.handleBlur}
               value={formik.values.password}
               className="bg-blue-800 outline-none text-xl md:text-2xl text-white"
+              autoComplete="off"
             />
           </div>
         </div>
@@ -87,7 +99,11 @@ const Login = () => {
               <div className="text-red-500 font-medium italic">{formik.errors.password}</div>
             ) : null}
 
-            <button className="bg-white mt-6 py-2 w-full text-blue-800">LOGIN</button>
+            <button className="bg-white mt-6 mb-3 py-2 w-full font-bold text-blue-800">{title}</button>
+            {title == 'LOGIN' && <div className="flex justify-between items-center">
+              <Link to='/register' className="text-white font-medium text-lg cursor-pointer hover:text-orange-600">Create An Account</Link>
+              <h3 className="text-white">Forgot Password?</h3>
+              </div>}
       </form>
       <ToastContainer />
     </div>
@@ -95,4 +111,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Form;
