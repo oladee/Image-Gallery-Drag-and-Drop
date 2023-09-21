@@ -60,4 +60,6 @@ Users should be able to:
 - Flexbox, Grid
 - Tailwind Css
 - React
+- React Dnd
+- Pexel API
 

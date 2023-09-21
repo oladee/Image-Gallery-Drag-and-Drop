@@ -55,7 +55,7 @@ const [errors, setErrors] = useState('')
     if(imageData.length < 1){
       var imageDetailing = 'Looks like your item is out of this World, try another keyword'
     }
-      imageDetailing = imageData.map((x, index) => <Imagecards key={x.url} index={index} id={x.id} src={x.src?.portrait} alt={x.alt} moveImage={moveImage} />)
+      imageDetailing = imageData.map((x, index) => <Imagecards key={x.url} index={index} id={x.id} src={x.src?.portrait} alt={x.alt} moveImage={moveImage} photographer={x.photographer} name={x.alt} />)
 
   return (
     

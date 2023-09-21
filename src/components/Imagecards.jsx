@@ -3,7 +3,7 @@ import { useDrag, useDrop } from 'react-dnd'
 
 const type = "Imagecards"
 
-const Imagecards = ({src, alt, index, id, moveImage}) => {
+const Imagecards = ({src, alt, index, id, moveImage, name, photographer}) => {
 
   const ref = useRef(null)
 
@@ -50,6 +50,8 @@ const Imagecards = ({src, alt, index, id, moveImage}) => {
     ref={ref}
     style={{ opacity: isDragging ? 0 : 1, }}>
       <img src={src} alt={alt} className="card--img"/>
+      <p>{name}</p>
+      <p>Photograph by: {photographer}</p>
     </div>
   )
 }

@@ -54,7 +54,7 @@ const Search = ({setLoading, setImageData, setErrors}) => {
               id="userSearch"
               value={inputValue}
               onChange={(event) => SetInputValue(event.target.value)}
-              placeholder="Search by title or tag"
+              placeholder="Search by title or place or event"
               className="bg-transparent opacity- font-normal w-3/4 placeholder-white outline-none"
               autoComplete='off'
             />
