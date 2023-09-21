@@ -20,8 +20,8 @@ const Form = ({title}) => {
     },
     validationSchema: Yup.object({
       password: Yup.string()
-        .required("Please Enter your password"),
-      email: Yup.string().email("Invalid email address").required("Required"),
+        .required("*Please Enter your password"),
+      email: Yup.string().email("Invalid email address!!").required("*Required"),
     }),
     onSubmit: (values) => {
         const letter = async (title)=>{
