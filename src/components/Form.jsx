@@ -9,6 +9,7 @@ import { app } from '../firebase-config'
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'firebase/auth'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import formIcon from '../assets/Group.svg'
 
 const Form = ({title}) => {
     let navigate = useNavigate();
@@ -54,7 +55,9 @@ const Form = ({title}) => {
   });
   
   return (
-    <div className="flex h-screen justify-center items-center bg-no-repeat bg-cover bg-blue-800" style={{backgroundImage: 'url(' + background + ')' }}>
+    <div className="flex flex-col h-screen justify-center items-center bg-no-repeat bg-cover bg-blue-800" style={{backgroundImage: 'url(' + background + ')' }}>
+
+      <img src={formIcon} alt="form icom" className="mb-9" />
       <form className="w-[82%] md:max-w-[350px]" onSubmit={(e)=>{
         e.preventDefault()
         formik.handleSubmit()
