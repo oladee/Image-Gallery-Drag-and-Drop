@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Form from "./components/Form";
 import { useState} from "react";
 import Homepage from "./components/Homepage";
-import {
+import{
   DndProvider,
   TouchTransition,
   MouseTransition,
@@ -69,6 +69,7 @@ console.log(imageData)
           element={
             <DndProvider options={HTML5toTouch}>
               <Homepage moveImage={moveImage} imageData={imageData} setImageData={setImageData}/>
+
             </DndProvider>
           }
         />
