@@ -65,7 +65,7 @@ const [errors, setErrors] = useState('')
       <Search setLoading={setLoading} setImageData={setImageData} setErrors={setErrors}/>
       </div>
       <div className='card-list py-[5px] md:h-[90svh]
-    flex flex-wrap  justify-center md:gap-5 md:grid md:place-content-center md:grid-cols-[repeat(4,auto)]'  >
+    flex flex-wrap  justify-center md:gap-5 md:grid md:place-content-center md:grid-cols-[repeat(4,auto)] mt-10'  >
       {loading ? (<LoadingAnim/>) : errors ? (<Badrequest message={errors}/>) : imageDetailing}
     </div>
     </div>

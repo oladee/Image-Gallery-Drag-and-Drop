@@ -58,7 +58,7 @@ const Search = ({setLoading, setImageData, setErrors}) => {
               className="bg-transparent opacity- font-normal w-3/4 placeholder-white outline-none"
               autoComplete='off'
             />
-            <img src={search} alt="searchIcon" onClick={handleSearch}
+            <img src={search} alt="searchIcon" onClick={handleSearch} className='cursor-pointer w-8'
             />
           </form>
 
